@@ -4,8 +4,8 @@ Count the occurrences of words in a string.
 """
 
 words_to_count = {}
-# text = input("Text: ")
-text = "this is a collection of words of nice words this is a fun thing it is"
+text = input("Text: ")
+# text = "this is a collection of words of nice words this is a fun thing it is"
 words = text.split()
 for word in words:
     try:
