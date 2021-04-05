@@ -13,6 +13,8 @@ for word in words:
     except KeyError:
         words_to_count[word] = 1
 
-# print each word with it's word count
-for word in words_to_count:
+# print each word sorted alphabetically with it's word count
+words = list(words_to_count.keys())
+words.sort()
+for word in words:
     print(f"{word} : {words_to_count[word]}")
