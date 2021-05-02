@@ -10,11 +10,13 @@ BoxLayout:
             orientation: 'vertical'
             Button:
                 text: 'Up'
+                on_press: app.handle_increment(1)
             Button:
                 text: 'Down'
+                on_press: app.handle_increment(-1)
     Button:
         text: 'Convert miles to km'
-        on_press: app.handle_press()
+        on_press: app.calculate_miles_to_km()
     Label:
-        text: app.km
+        id: km_output
         color: (1, 1, 0, 1)
