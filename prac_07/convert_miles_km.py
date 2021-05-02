@@ -27,8 +27,11 @@ class ConvertMilesToKMProgram(App):
         self.calculate_miles_to_km()
 
     def get_valid_miles(self):
-        miles = float(self.root.ids.miles_input.text)
-        return miles
+        try:
+            miles = float(self.root.ids.miles_input.text)
+            return miles
+        except ValueError:
+            return 0
 
 
 ConvertMilesToKMProgram().run()
