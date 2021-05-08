@@ -17,8 +17,8 @@ def main():
     print("Let's drive!")
     print(MENU)
     menu_choice = input(">>> ").upper()
-    while menu_choice != "Q":  # Quit
-        if menu_choice == "D":  # Drive
+    while menu_choice != "Q":       # Quit
+        if menu_choice == "D":      # Drive
             if current_taxi is None:
                 print("You need to choose a taxi before you can drive")
             else:
@@ -26,11 +26,9 @@ def main():
                 trip_fare = take_taxi_trip(taxi)
                 bill_to_date += trip_fare
             print("Bill to date: ${:.2f}".format(bill_to_date))
-        elif menu_choice == "C":  # Choose Taxi
-            # print("Choose Taxi")
+        elif menu_choice == "C":    # Choose Taxi
             current_taxi = choose_valid_taxi(taxis)
             print("Bill to date: ${:.2f}".format(bill_to_date))
-            # print(current_taxi)
         else:
             print("Invalid Option")
         print(MENU)
@@ -41,12 +39,13 @@ def main():
 
 
 def take_taxi_trip(taxi):
+    """Take taxi trip and return trip fare"""
     distance = float(input("Drive how far? "))
     taxi.start_fare()
     taxi.drive(distance)
-    current_fare = taxi.get_fare()
-    print("Your {} trip cost you ${:.2f}".format(taxi.name, current_fare))
-    return current_fare
+    trip_fare = taxi.get_fare()
+    print("Your {} trip cost you ${:.2f}".format(taxi.name, trip_fare))
+    return trip_fare
 
 
 def choose_valid_taxi(taxis):
