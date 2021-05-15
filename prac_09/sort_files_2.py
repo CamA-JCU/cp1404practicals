@@ -16,7 +16,8 @@ def main():
         if not filename[0] == ".":
             extension = filename.split(".")[-1]
             if extension not in extension_to_category:
-                category = input("What category would you like to sort {} files into? ".format(extension))
+                category = input("What category would you like to sort {} files into? "
+                                 .format(extension))
                 try:
                     os.mkdir(category)
                 except FileExistsError:
