@@ -1,13 +1,16 @@
 """
 CP1404/CP5632 Practical
-Demos of various os module examples
+Clean Up files program
 """
-import shutil
+
 import os
 
 
+SEPARATOR = "_"
+
+
 def main():
-    """Demo os module functions."""
+    """Clean Up files program."""
     print("Starting directory is: {}".format(os.getcwd()))
 
     # Change to desired directory
@@ -17,7 +20,6 @@ def main():
     print("Files in {}:\n{}\n".format(os.getcwd(), os.listdir('.')))
 
     # Make a new directory
-    # The next time you run this, it will crash if the directory exists
     try:
         os.mkdir('temp')
     except FileExistsError:
@@ -32,16 +34,25 @@ def main():
         new_name = get_fixed_filename(filename)
         print("Renaming {} to {}".format(filename, new_name))
 
-        # Option 1: rename file to new name - in place
-        # os.rename(filename, new_name)
-
-        # Option 2: move file to new place, with new name
-        shutil.move(filename, 'temp/' + new_name)
+        os.rename(filename, new_name)
 
 
 def get_fixed_filename(filename):
     """Return a 'fixed' version of filename."""
-    new_name = filename.replace(" ", "_").replace(".TXT", ".txt")
+    filename = filename.replace(" ", SEPARATOR).replace(".TXT", ".txt")
+    new_name = ""
+    for i, char in enumerate(filename):
+        if not filename[i - 1].isalpha() and filename[i - 1] != "." and filename[i - 1] != "'" and char.islower():
+            new_name += char.upper()
+        elif char == "." and i != len(filename) - 4:
+            pass
+        else:
+            new_name += char
+        try:
+            if (filename[i + 1].isupper() or filename[i + 1] == "(") and char.isalpha():
+                new_name += SEPARATOR
+        except IndexError:
+            pass
     return new_name
 
 
@@ -57,8 +68,6 @@ def demo_walk():
         for filename in filenames:
             new_name = os.path.join(directory_name, get_fixed_filename(filename))
             filename = os.path.join(directory_name, filename)
-            # print(filename)
-            # print(new_name)
             os.rename(filename, new_name)
 
 # main()
