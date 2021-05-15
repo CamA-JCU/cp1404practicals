@@ -17,6 +17,10 @@ def main():
         print(extension_starts)
         extension = filename[extension_starts:]
         print(extension)
+        try:
+            os.mkdir(extension)
+        except FileExistsError:
+            pass
         extensions.append(extension)
     print(extensions)
 
