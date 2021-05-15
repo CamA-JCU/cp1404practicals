@@ -12,17 +12,17 @@ def main():
     os.chdir('FilesToSort')
     extensions = []
     for filename in os.listdir('.'):
-        print(filename)
-        extension_starts = filename.find(".") + 1
-        print(extension_starts)
-        extension = filename[extension_starts:]
-        print(extension)
-        try:
-            os.mkdir(extension)
-        except FileExistsError:
-            pass
-        extensions.append(extension)
-    print(extensions)
+        # find files that don't start with "."
+        if not filename[0] == ".":
+            extension_starts = filename.find(".") + 1
+            extension = filename[extension_starts:]
+            if extension not in extensions:
+                try:
+                    os.mkdir(extension)
+                except FileExistsError:
+                    pass
+                extensions.append(extension)
+            shutil.move(filename, extension + '/' + filename)
 
 
 main()
