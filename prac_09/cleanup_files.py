@@ -42,7 +42,8 @@ def get_fixed_filename(filename):
     filename = filename.replace(" ", SEPARATOR).replace(".TXT", ".txt")
     new_name = ""
     for i, char in enumerate(filename):
-        if not filename[i - 1].isalpha() and filename[i - 1] != "." and filename[i - 1] != "'" and char.islower():
+        if not filename[i - 1].isalpha() and filename[i - 1] != "." and filename[i - 1] != "'" \
+                and char.islower():
             new_name += char.upper()
         elif char == "." and i != len(filename) - 4:
             pass
